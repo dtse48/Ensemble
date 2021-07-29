@@ -6,7 +6,7 @@ function NavigationBar(props) {
     return (
         <div>
             <Navbar bg = "color" variant = "dark">
-                <Navbar.Brand href = "/">Ensemble</Navbar.Brand>
+                <Navbar.Brand href = "/" style = {{marginLeft:"25px"}}>Ensemble</Navbar.Brand>
                 <Nav><Nav.Link href = "/">Home</Nav.Link></Nav>
                 <Nav><Nav.Link href = "/login">Login</Nav.Link></Nav>
                 <Nav><Nav.Link href = "/create">Create</Nav.Link></Nav>

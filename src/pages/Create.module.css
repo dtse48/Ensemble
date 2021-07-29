@@ -4,3 +4,21 @@
 .error {
     color: red;
 }
+.button {
+    background-color: #ff7456 ;
+}
+.image {
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10px;
+}
+.post {
+    margin: auto;
+    
+}
+.simpleText {
+    margin-top: 20px;
+    text-align: center;
+}

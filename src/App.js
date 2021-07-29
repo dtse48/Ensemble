@@ -5,7 +5,7 @@ import LoginPage from "./pages/Login";
 import CreatePage from "./pages/Create";
 import ChatPage from "./pages/Chat";
 import Post from "./pages/Post";
-import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap/dist/css/bootstrap.css";
 function App() {
   return (
     <NavigationBar>
