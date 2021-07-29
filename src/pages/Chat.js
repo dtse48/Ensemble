@@ -1,8 +1,8 @@
+import Alert from "react-bootstrap/Alert";
+import Post from "./Post";
 function ChatPage() {
     return (
-        <div>
-            Chat Page
-        </div>
+        <div>chat page</div>
     );
 }
 export default ChatPage;
