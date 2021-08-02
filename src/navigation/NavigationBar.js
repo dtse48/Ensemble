@@ -11,6 +11,7 @@ function NavigationBar(props) {
                 <Nav><Nav.Link href = "/login">Login</Nav.Link></Nav>
                 <Nav><Nav.Link href = "/create">Create</Nav.Link></Nav>
                 <Nav><Nav.Link href = "/chat">Chat</Nav.Link></Nav>
+                <Nav className="ml-auto"><Nav.Link href = "/myprofile">My Profile</Nav.Link></Nav>
             </Navbar>
             {props.children}
         </div>  

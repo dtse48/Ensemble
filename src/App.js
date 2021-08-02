@@ -4,7 +4,8 @@ import WelcomePage from "./pages/Welcome";
 import LoginPage from "./pages/Login";
 import CreatePage from "./pages/Create";
 import ChatPage from "./pages/Chat";
-import Post from "./pages/Post";
+import CreateAccount from "./pages/CreateAccount";
+import Profile from "./pages/Profile";
 import "bootstrap/dist/css/bootstrap.css";
 function App() {
   return (
@@ -21,8 +22,11 @@ function App() {
       <Route path = "/chat">
         <ChatPage></ChatPage>
       </Route>
-      <Route path = "/newpost">
-        <Post></Post>
+      <Route path = "/createaccount">
+        <CreateAccount></CreateAccount>
+      </Route>
+      <Route path = "/myprofile">
+        <Profile></Profile>
       </Route>
     </NavigationBar>
   );

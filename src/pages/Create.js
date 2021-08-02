@@ -2,7 +2,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import classes from "./Create.module.css";
 import Card from "react-bootstrap/Card";
-import Alert from "react-bootstrap/Alert";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 
@@ -50,10 +49,9 @@ function CreatePage() {
             history.push("/");
             alert("Congratulations, your post was successful!");
         })
-        console.log("made it");
     }
     return (
-        <div>
+        <div style={{marginTop:"10px"}}>
         {showForm === true ?
             <Form className = {classes.form} onSubmit = {submitHandler}>
                 <Form.Group>
