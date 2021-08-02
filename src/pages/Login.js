@@ -1,7 +1,9 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
-import {useState} from "react";
+import {useState, useContext} from "react";
+import {UserContext} from "../context/UserContext";
+import {useHistory} from "react-router-dom";
 
 function LoginPage() {
     const [username,setUsername] = useState("");
@@ -9,10 +11,29 @@ function LoginPage() {
     const [submitted,setSubmitted] = useState(false);
     const [loadedUsers,setLoadedUsers] = useState([]);
     const [userFound,setUserFound] = useState(null);
+    const {setLoggedIn} = useContext(UserContext); 
+    const history = useHistory();
     function submitHandler() {
         setSubmitted(true);
         if (username !== "" && password !== "") {
-            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json"
+            console.log(loadedUsers);
+            if (loadedUsers.length !== 0) {
+                for (const key in loadedUsers) {
+                    if (username === loadedUsers[key].username && password === loadedUsers[key].password) {
+                        console.log("user found!");
+                        setUserFound(true);
+                        setLoggedIn(true);
+                        history.push("/");
+                    }
+                }
+                if (userFound === null) {
+                    setUserFound(false);
+                }
+            }  
+        }
+    }
+    function loadData() {
+        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json"
             ).then(response => {
                 return response.json();
             }).then(data => {
@@ -26,19 +47,10 @@ function LoginPage() {
                 }
                 setLoadedUsers(users);
             });
-            for (const key in loadedUsers) {
-                if (username === loadedUsers[key].username && password === loadedUsers[key].password) {
-                    console.log("user found!");
-                    setUserFound(true);
-                }
-            }
-            if (userFound === null) {
-                setUserFound(false);
-            }
-        }
     }
     return (
         <div>
+            {loadData()}
             <Form style = {{marginLeft: "auto",marginRight:"auto",marginTop:"15px",width:"25%"}}>
                 <Form.Group>
                     <Form.Label>Username:</Form.Label>
