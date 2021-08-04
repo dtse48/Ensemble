@@ -12,6 +12,8 @@ function LoginPage() {
     const [loadedUsers,setLoadedUsers] = useState([]);
     const [userFound,setUserFound] = useState(null);
     const {setLoggedIn} = useContext(UserContext); 
+    const {set_Username} = useContext(UserContext);
+    const {set_Password} = useContext(UserContext);
     const history = useHistory();
     function submitHandler() {
         setSubmitted(true);
@@ -23,6 +25,8 @@ function LoginPage() {
                         console.log("user found!");
                         setUserFound(true);
                         setLoggedIn(true);
+                        set_Username(username);
+                        set_Password(password);
                         history.push("/");
                     }
                 }

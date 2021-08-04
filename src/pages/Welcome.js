@@ -4,10 +4,13 @@ import classes from "./Welcome.module.css";
 
 function WelcomePage() {
     const context = useContext(UserContext);
+    console.log(context.username);
+    console.log(context.password);
+    console.log(context.loggedIn);
     return (
         <div className = {classes.main}>
-            Welcome to Ensemble 
-            {context.loggedIn ? <div>HI!</div> : null}
+            {context.loggedIn? 
+            <div>Welcome back, {context.username}!</div> : <div>Welcome to Ensemble!</div> } 
         </div>
     );
 }
