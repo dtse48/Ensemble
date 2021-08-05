@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import {Link,useHistory} from "react-router-dom";
-import {useContext} from "react";
+import {useContext,useState} from "react";
 import {UserContext} from "../context/UserContext";
 import SearchResults from "../pages/SearchResults";
 import MyPosts from "../pages/MyPosts";
@@ -13,6 +13,7 @@ import MyPosts from "../pages/MyPosts";
 function NavigationBar(props) {
     const history = useHistory();
     const context = useContext(UserContext);
+    const [input,setInput] = useState("");
     const {setLoggedIn} = useContext(UserContext); 
     const {set_Username} = useContext(UserContext);
     const {set_Password} = useContext(UserContext);
@@ -22,6 +23,10 @@ function NavigationBar(props) {
         set_Username("");
         set_Password("");
         history.push("/");
+    }
+    function searchHandler() {
+        set_searchInput(input);
+        history.push("/searchresults")
     }
     return (
         <div>
@@ -38,13 +43,13 @@ function NavigationBar(props) {
                 <div style={{textAlign:"right"}}>
                     <Form className="d-flex" style={{marginLeft:"5px"}}>
                         <FormControl
-                            onChange = {(response => {set_searchInput(response.target.value);})}
+                            onChange = {(response => {setInput(response.target.value); console.log(input)})}
                             // type="search"
                             placeholder="Song, Album, Artist, or User"
                             // className="mr-2"
                             // aria-label="Search"
                         />
-                        <Button as={Link} to="/searchresults" variant="success" style={{marginLeft:"10px"}}>Search</Button>
+                        <Button as={Link} variant="success" style={{marginLeft:"10px"}} onClick={searchHandler}>Search</Button>
                     </Form>
                 </div>
             </Navbar>

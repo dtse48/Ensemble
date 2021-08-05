@@ -5,8 +5,6 @@ import MyPosts from "./MyPosts";
 function SearchResults() {
     const context = useContext(UserContext);
     const [loadedPosts,setLoadedPosts] = useState([]);
-    const [isLoading,setIsLoading] = useState(true);
-    console.log(context.searchInput);
     useEffect(() => 
         {
             fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts.json"
@@ -24,12 +22,11 @@ function SearchResults() {
                     } 
                 }
                 setLoadedPosts(posts.reverse());
-                setIsLoading(false)
             });
-        },[])
+        },[context.searchInput])
     return (
         <div>
-            Search Results:
+            <h6 style={{textAlign:"center",marginTop:"20px"}}>Search Results:</h6>
             <MyPosts posts={loadedPosts}></MyPosts>
         </div>
     );
