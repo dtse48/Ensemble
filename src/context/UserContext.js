@@ -7,4 +7,6 @@ export const UserContext = createContext({
     set_Username: ((username)=>{}),
     password:"",
     set_Password: ((password)=>{}),
+    searchInput:"",
+    set_searchInput:((searchInput)=>{})
 });

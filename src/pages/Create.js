@@ -8,6 +8,9 @@ import { UserContext } from "../context/UserContext";
 
 function CreatePage() {
     let subject = "";
+    let songName = "";
+    let albumName = "";
+    let artistName = "";
     const history = useHistory();
     const context = useContext(UserContext);
     const [postType, setPostType] = useState("Song");
@@ -32,8 +35,16 @@ function CreatePage() {
     function confirmPost() {
         if (postType === "Artist") {
             subject = context.username + " on " + name1;
+            artistName = name1;
         }
         else {
+            if (postType === "Song") {
+                songName = name1;
+            }
+            if (postType === "Album") {
+                albumName = name1;
+            }
+            artistName = name2;
             subject = context.username + " on " + name1 + " by " + name2;
         }
         const postData = {
@@ -44,6 +55,14 @@ function CreatePage() {
             username:context.username,
             date:today
         }
+        if (songName !== "") {
+            postData.songName = songName;
+        }
+        else if (albumName !== "") {
+            postData.albumName = albumName;
+        }
+        postData.artistName = artistName;
+
         fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts.json",
         {
             method:"POST",

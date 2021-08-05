@@ -1,10 +1,12 @@
-import { useState,useContext,useEffect } from "react";
-import { UserContext } from "../context/UserContext";
+import {useContext,useEffect,useState} from "react";
+import {UserContext} from "../context/UserContext";
 import MyPosts from "./MyPosts";
 
-function MyProfile() {
-    const [loadedPosts,setLoadedPosts] = useState([]);
+function SearchResults() {
     const context = useContext(UserContext);
+    const [loadedPosts,setLoadedPosts] = useState([]);
+    const [isLoading,setIsLoading] = useState(true);
+    console.log(context.searchInput);
     useEffect(() => 
         {
             fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts.json"
@@ -17,16 +19,19 @@ function MyProfile() {
                         id: key,
                         ...data[key]
                     }
-                    if (context.username === post.username) {
+                    if (context.searchInput === post.songName || context.searchInput === post.artistName || context.searchInput === post.albumName) {
                         posts.push(post);
                     } 
                 }
                 setLoadedPosts(posts.reverse());
+                setIsLoading(false)
             });
         },[])
-    console.log(loadedPosts);
-    return(
-        <MyPosts posts={loadedPosts}></MyPosts>
+    return (
+        <div>
+            Search Results:
+            <MyPosts posts={loadedPosts}></MyPosts>
+        </div>
     );
 }
-export default MyProfile;
+export default SearchResults;

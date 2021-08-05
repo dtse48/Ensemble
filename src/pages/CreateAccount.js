@@ -1,29 +1,64 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {useState} from "react";
+import {useState,useContext,useEffect} from "react";
 import {useHistory} from "react-router-dom";
+import {UserContext} from "../context/UserContext";
 
 function CreateAccount() {
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
     const [submitted,setSubmitted] = useState(false);
+    const [loadedUsers,setUsers] = useState([]);
     const history = useHistory();
+    const context = useContext(UserContext);
+    const {set_Username} = useContext(UserContext);
+    const {set_Password} = useContext(UserContext);
+    const {setLoggedIn} = useContext(UserContext);
+    var validUsername = true;
+    useEffect(() => {
+        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json"
+        ).then(response => {
+            return response.json();
+        }).then(data => {
+            const users = [];
+            for (const key in data) {
+                const user = {
+                    id: key,
+                    ...data[key]
+                }
+                users.push(user); 
+            }
+            setUsers(users);
+        });
+    },[])
+    console.log(loadedUsers);
     function registrationHandler() {
         setSubmitted(true);
         if (username !== "" && password !== "") {
-            let userData = {
-                username: username,
-                password: password
+            for (const key in loadedUsers) {
+                if (username === loadedUsers[key].username) {
+                    alert("username is taken!");
+                    validUsername = false;
+                }
             }
-            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json",
-            {
-                method:"POST",
-                body:JSON.stringify(userData),
-                headers: {"Content-Type": "application/json"}
-            }).then(() => {
-                history.push("/");
-                alert("Congratulations, you have created an account!");
-            })
+            if (validUsername) {
+                let userData = {
+                    username: username,
+                    password: password
+                }
+                fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json",
+                {
+                    method:"POST",
+                    body:JSON.stringify(userData),
+                    headers: {"Content-Type": "application/json"}
+                }).then(() => {
+                    history.push("/");
+                    alert("Congratulations, you have created an account!");
+                });
+                set_Username(username);
+                set_Password(password);
+                setLoggedIn(true);
+            }
         }
     }
     return (

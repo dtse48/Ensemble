@@ -8,13 +8,15 @@ import Profile from "./pages/Profile";
 import "bootstrap/dist/css/bootstrap.css";
 import {UserContext} from "./context/UserContext";
 import {useState} from "react";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, set_Username] = useState("");
   const [password, set_Password] = useState("");
+  const [searchInput,set_searchInput] = useState("");
   return (
-    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password}}>
+    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
@@ -30,6 +32,9 @@ function App() {
         </Route>
         <Route path = "/myprofile">
           <Profile></Profile>
+        </Route>
+        <Route path="/searchresults">
+          <SearchResults></SearchResults>
         </Route>
       </NavigationBar>
     </UserContext.Provider>
