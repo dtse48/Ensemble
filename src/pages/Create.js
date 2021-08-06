@@ -116,13 +116,13 @@ function CreatePage() {
                     : 
                     <div> 
                         <h5 className = {classes.simpleText}>Your post will look like this:</h5>
-                        <Card style = {{width: "1000px",margin:"auto"}}>
+                        <Card style = {{width: "500px",margin:"auto"}}>
                             {postType === "Artist" ?
                             <Card.Header>{context.username} on {name1}</Card.Header> 
                             : 
                             <Card.Header>{context.username} on {name1} by {name2}</Card.Header> 
                             }
-                            <Card.Img src = {image} style = {{width: "25%", marginRight: "auto", display: "block", marginLeft: "auto", marginTop: "40px"}}></Card.Img>
+                            <Card.Img src = {image} style = {{width: "50%", marginRight: "auto", display: "block", marginLeft: "auto", marginTop: "40px"}}></Card.Img>
                             <Card.Body>
                                 <hr></hr>
                                 <Card.Text>"{desc}"</Card.Text>

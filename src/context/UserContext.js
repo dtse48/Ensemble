@@ -8,5 +8,7 @@ export const UserContext = createContext({
     password:"",
     set_Password: ((password)=>{}),
     searchInput:"",
-    set_searchInput:((searchInput)=>{})
+    set_searchInput:((searchInput)=>{}),
+    userId:"",
+    set_UserId:((userId)=>{})
 });

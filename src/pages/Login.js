@@ -14,7 +14,9 @@ function LoginPage() {
     const {setLoggedIn} = useContext(UserContext); 
     const {set_Username} = useContext(UserContext);
     const {set_Password} = useContext(UserContext);
+    const {set_UserId} = useContext(UserContext);
     const history = useHistory();
+    const context = useContext(UserContext);
     function submitHandler() {
         setSubmitted(true);
         if (username !== "" && password !== "") {
@@ -27,9 +29,11 @@ function LoginPage() {
                         setLoggedIn(true);
                         set_Username(username);
                         set_Password(password);
+                        set_UserId(loadedUsers[key].id);
                         history.push("/");
                     }
                 }
+                
                 if (userFound === null) {
                     setUserFound(false);
                 }
@@ -55,7 +59,7 @@ function LoginPage() {
     return (
         <div>
             {loadData()}
-            <Form style = {{marginLeft: "auto",marginRight:"auto",marginTop:"15px",width:"25%"}}>
+            <Form style = {{marginLeft: "auto",marginRight:"auto",marginTop:"50px",width:"25%"}}>
                 <Form.Group>
                     <Form.Label>Username:</Form.Label>
                     <Form.Control type = "text" onBlur={(response)=>{setUsername(response.target.value);}}></Form.Control>

@@ -34,7 +34,7 @@ function NavigationBar(props) {
                 <Navbar.Brand as = {Link} to = "/" style = {{marginLeft:"25px"}}>Ensemble</Navbar.Brand>
                 <Nav><Nav.Link as={Link} to="/" >Home</Nav.Link></Nav>
                 <Nav><Nav.Link as={Link}to = "/create">Create</Nav.Link></Nav>
-                <Nav className="ml-auto"><Nav.Link as = {Link} to = "/myprofile">Profile</Nav.Link></Nav>
+                <Nav><Nav.Link as = {Link} to = "/myprofile">Profile</Nav.Link></Nav>
                 {!context.loggedIn ? 
                 <Nav><Nav.Link as={Link} to = "/login">Log In</Nav.Link></Nav>
                 : 

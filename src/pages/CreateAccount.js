@@ -55,9 +55,9 @@ function CreateAccount() {
                     history.push("/");
                     alert("Congratulations, you have created an account!");
                 });
-                set_Username(username);
-                set_Password(password);
-                setLoggedIn(true);
+                // set_Username(username);
+                // set_Password(password);
+                // setLoggedIn(true);
             }
         }
     }

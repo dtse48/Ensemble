@@ -9,14 +9,16 @@ import "bootstrap/dist/css/bootstrap.css";
 import {UserContext} from "./context/UserContext";
 import {useState} from "react";
 import SearchResults from "./pages/SearchResults";
+import Settings from "./pages/Settings";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, set_Username] = useState("");
   const [password, set_Password] = useState("");
   const [searchInput,set_searchInput] = useState("");
+  const [userId,set_UserId] = useState("");
   return (
-    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput}}>
+    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,userId,set_UserId}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
@@ -35,6 +37,9 @@ function App() {
         </Route>
         <Route path="/searchresults">
           <SearchResults></SearchResults>
+        </Route>
+        <Route path="/settings">
+          <Settings></Settings>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

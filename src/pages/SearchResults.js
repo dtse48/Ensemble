@@ -25,9 +25,17 @@ function SearchResults() {
             });
         },[context.searchInput])
     return (
-        <div>
-            <h6 style={{textAlign:"center",marginTop:"20px"}}>Search Results:</h6>
-            <MyPosts posts={loadedPosts}></MyPosts>
+        <div style={{textAlign:"center",marginTop:"50px"}}>
+            {/* <h6>Search Results:</h6> */}
+            <div>
+                {loadedPosts.length === 0 ?
+                    <div>Your search returned 0 results!</div>
+                :
+                <div>
+                    <MyPosts posts={loadedPosts}></MyPosts>
+                </div>    
+                }
+            </div> 
         </div>
     );
 }
