@@ -10,6 +10,7 @@ import {UserContext} from "./context/UserContext";
 import {useState} from "react";
 import SearchResults from "./pages/SearchResults";
 import Settings from "./pages/Settings";
+import SuccessfulPost from "./pages/SuccessfulPost";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path="/settings">
           <Settings></Settings>
+        </Route>
+        <Route path="/successfulpost">
+          <SuccessfulPost></SuccessfulPost>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

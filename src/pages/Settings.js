@@ -12,6 +12,9 @@ function Settings() {
     const [newPassword,setNewPassword] = useState("");
     const [newPicture,setNewPicture] = useState("");
     const context = useContext(UserContext);
+    const {set_Username} = useContext(UserContext);
+    const {set_Password} = useContext(UserContext);
+    var d = {}
     function mouseOverUsername() {
         setMouseOver("username")
     }
@@ -47,6 +50,7 @@ function Settings() {
     }
     function changeUsername() {
         if (newUsername !== "") {
+            console.log(newUsername);
             fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json",
             {
                 method:"PATCH",
@@ -57,7 +61,42 @@ function Settings() {
             }).then(() => {
                 // history.push("/");
                 alert("Username successfully updated!");
-            })
+            });
+            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts.json"
+            ).then(response => {
+                return response.json();
+            }).then(data => {
+                for (const key in data) {
+                    var id = key;
+                    if (context.username === data[key].username) {
+                        var postType = data[key].postType;
+                        var artistName = data[key].artistName; 
+                        if (postType === "Song") {
+                            var songName = data[key].songName;
+                            d.username = newUsername;
+                            d.subject = newUsername+" on "+songName+" by "+artistName;   
+                        }
+                        else if (postType === "Album") {
+                            var albumName = data[key].albumName;
+                            d.username = newUsername;
+                            d.subject = newUsername+" on "+albumName+" by "+artistName;
+                        }
+                        else {
+                            d.username = newUsername;
+                            d.subject = newUsername +" on "+artistName;
+                        }
+                        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts/" + id + ".json",
+                        {
+                            method:"PATCH",
+                            body:JSON.stringify(d),
+                            headers: {"Content-Type": "application/json"}
+                        }).then(() => {
+                            // history.push("/");
+                        });
+                    } 
+                }
+            });  
+            set_Username(newUsername);
         }
     }
     function changePassword() {
@@ -72,7 +111,7 @@ function Settings() {
             }).then(() => {
                 // history.push("/");
                 alert("Password successfully updated!");
-            })
+            }); 
         }
     }
     function changePicture() {
@@ -92,7 +131,7 @@ function Settings() {
     }
     return (
         <div style={{textAlign:"center"}}>
-            <Menu vertical>
+            <Menu vertical style = {{margin:"auto",marginTop:"50px"}}>
                 <Menu.Item onMouseOver={mouseOverUsername} onMouseLeave={mouseNotOverUsername} active={mouseOver==="username"} onClick={showUsernameInput}>
                     <p>Change username</p>
                     {showUsername ?

@@ -25,11 +25,11 @@ function SearchResults() {
             });
         },[context.searchInput])
     return (
-        <div style={{textAlign:"center",marginTop:"50px"}}>
+        <div style={{marginTop:"50px"}}>
             {/* <h6>Search Results:</h6> */}
             <div>
                 {loadedPosts.length === 0 ?
-                    <div>Your search returned 0 results!</div>
+                    <div style={{textAlign:"center"}}>Your search returned 0 results!</div>
                 :
                 <div>
                     <MyPosts posts={loadedPosts}></MyPosts>

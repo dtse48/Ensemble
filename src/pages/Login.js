@@ -33,11 +33,10 @@ function LoginPage() {
                         history.push("/");
                     }
                 }
-                
-                if (userFound === null) {
-                    setUserFound(false);
-                }
             }  
+        }
+        if (userFound === null) {
+            setUserFound(false);
         }
     }
     function loadData() {

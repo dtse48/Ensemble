@@ -69,8 +69,7 @@ function CreatePage() {
             body:JSON.stringify(postData),
             headers: {"Content-Type": "application/json"}
         }).then(() => {
-            history.push("/");
-            alert("Congratulations, your post was successful!");
+            history.push("/successfulpost");
         })
     }
     return (
@@ -78,7 +77,7 @@ function CreatePage() {
             {context.loggedIn ? 
                 <div style={{marginTop:"10px"}}>
                     {showForm === true ?
-                    <Form className = {classes.form} onSubmit = {submitHandler}>
+                    <Form className = {classes.form} onSubmit = {submitHandler} style={{width:"25%",margin:"auto"}}>
                         <Form.Group>
                             <Form.Label>Post Type:</Form.Label>
                             <Form.Control as = "select" onChange = {(type) => {setPostType(type.target.value);}}>
@@ -111,7 +110,7 @@ function CreatePage() {
                                         <p className = {classes.error}>Image link is required!</p>
                             : null}
                         </Form.Group>
-                        <Button style = {{backgroundColor: "#ff7456", marginTop: "20px", borderColor: "#ff7456"}} type = "submit">Submit</Button>
+                        <div style={{textAlign:"center"}}><Button style = {{backgroundColor: "#ff7456", marginTop: "20px", borderColor: "#ff7456",textAlign:"center"}} type = "submit">Submit</Button></div>
                     </Form>
                     : 
                     <div> 
