@@ -17,7 +17,7 @@ function Profile() {
             <div>
                 <Button icon ><Icon name="settings" size="large" onClick={redirect}></Icon></Button>
                 <Card style={{margin:"auto"}}>
-                   <Image src="https://upload.wikimedia.org/wikipedia/en/5/53/Wolf_cover3.jpg"></Image>
+                   <Image src={context.profilePicture}></Image>
                     <Card.Content>
                         <Card.Header>{context.username}</Card.Header>
                         <Card.Meta>More Info</Card.Meta>

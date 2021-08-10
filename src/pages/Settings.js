@@ -14,6 +14,7 @@ function Settings() {
     const context = useContext(UserContext);
     const {set_Username} = useContext(UserContext);
     const {set_Password} = useContext(UserContext);
+    const {set_ProfilePicture} = useContext(UserContext);
     var d = {}
     function mouseOverUsername() {
         setMouseOver("username")
@@ -110,6 +111,7 @@ function Settings() {
                 headers: {"Content-Type": "application/json"}
             }).then(() => {
                 // history.push("/");
+                set_Password(newPassword);
                 alert("Password successfully updated!");
             }); 
         }
@@ -125,6 +127,7 @@ function Settings() {
                 headers: {"Content-Type": "application/json"}
             }).then(() => {
                 // history.push("/");
+                set_ProfilePicture(newPicture);
                 alert("Picture successfully updated!");
             })
         }

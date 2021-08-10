@@ -18,8 +18,9 @@ function App() {
   const [password, set_Password] = useState("");
   const [searchInput,set_searchInput] = useState("");
   const [userId,set_UserId] = useState("");
+  const [profilePicture,set_ProfilePicture] = useState("");
   return (
-    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,userId,set_UserId}}>
+    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,userId,set_UserId,profilePicture,set_ProfilePicture}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>

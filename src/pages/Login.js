@@ -15,6 +15,7 @@ function LoginPage() {
     const {set_Username} = useContext(UserContext);
     const {set_Password} = useContext(UserContext);
     const {set_UserId} = useContext(UserContext);
+    const {set_ProfilePicture} = useContext(UserContext);
     const history = useHistory();
     const context = useContext(UserContext);
     function submitHandler() {
@@ -30,6 +31,7 @@ function LoginPage() {
                         set_Username(username);
                         set_Password(password);
                         set_UserId(loadedUsers[key].id);
+                        set_ProfilePicture(loadedUsers[key].picture)
                         history.push("/");
                     }
                 }

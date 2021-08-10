@@ -10,5 +10,7 @@ export const UserContext = createContext({
     searchInput:"",
     set_searchInput:((searchInput)=>{}),
     userId:"",
-    set_UserId:((userId)=>{})
+    set_UserId:((userId)=>{}),
+    profilePicture:"",
+    set_ProfilePicture:((profilePicture)=>{})
 });
