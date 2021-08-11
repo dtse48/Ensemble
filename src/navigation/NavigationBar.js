@@ -7,8 +7,7 @@ import Button from "react-bootstrap/Button";
 import {Link,useHistory} from "react-router-dom";
 import {useContext,useState} from "react";
 import {UserContext} from "../context/UserContext";
-import SearchResults from "../pages/SearchResults";
-import MyPosts from "../pages/MyPosts";
+import { Icon } from "semantic-ui-react";
 
 function NavigationBar(props) {
     const history = useHistory();
@@ -49,9 +48,9 @@ function NavigationBar(props) {
                             // className="mr-2"
                             // aria-label="Search"
                         />
-                        <Button as={Link} variant="success" style={{marginLeft:"10px"}} onClick={searchHandler}>Search</Button>
                     </Form>
                 </div>
+                <Nav><Icon name="search" style={{marginLeft:"10px",marginBottom:"2px",color:"white",cursor:"pointer"}} onClick={searchHandler}></Icon></Nav>
             </Navbar>
             {props.children}     
         </div>  

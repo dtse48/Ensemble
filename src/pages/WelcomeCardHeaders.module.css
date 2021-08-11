@@ -1,0 +1,16 @@
+.headers {
+    color: "white";
+}
+
+.cards {
+    transition: transform 500ms;
+    cursor: pointer;
+}
+
+.cards:hover {
+    transform: translateY(-50px);
+}
+
+.welcome {
+    font-size: 50px;
+}
