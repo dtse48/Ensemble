@@ -11,6 +11,7 @@ import {useState} from "react";
 import SearchResults from "./pages/SearchResults";
 import Settings from "./pages/Settings";
 import SuccessfulPost from "./pages/SuccessfulPost";
+import Template from "./pages/Template";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -45,6 +46,9 @@ function App() {
         </Route>
         <Route path="/successfulpost">
           <SuccessfulPost></SuccessfulPost>
+        </Route>
+        <Route path="/template">
+          <Template></Template>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

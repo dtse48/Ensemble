@@ -8,7 +8,7 @@
 }
 
 .cards:hover {
-    transform: translateY(-50px);
+    transform: translateY(50px);
 }
 
 .welcome {

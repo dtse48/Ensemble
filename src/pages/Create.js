@@ -113,7 +113,7 @@ function CreatePage() {
                         <div style={{textAlign:"center"}}><Button style = {{backgroundColor: "#ff7456", marginTop: "20px", borderColor: "#ff7456",textAlign:"center"}} type = "submit">Submit</Button></div>
                     </Form>
                     : 
-                    <div> 
+                    <div style={{marginTop:"50px"}}> 
                         <h5 className = {classes.simpleText}>Your post will look like this:</h5>
                         <Card style = {{width: "500px",margin:"auto"}}>
                             {postType === "Artist" ?

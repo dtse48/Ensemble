@@ -7,7 +7,7 @@ function SuccessfulPost() {
         setShowMessage(false);
     }
     return (
-        <div>
+        <div style={{marginTop:"50px"}}>
             {showMessage ?
             <Message positive style={{width:"50%",margin:"auto"}} onDismiss = {dismissMessage}>
                 <Message.Header>Post successful!</Message.Header>
