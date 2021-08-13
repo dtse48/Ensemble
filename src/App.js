@@ -12,6 +12,7 @@ import SearchResults from "./pages/SearchResults";
 import Settings from "./pages/Settings";
 import SuccessfulPost from "./pages/SuccessfulPost";
 import Template from "./pages/Template";
+import MyPosts2 from "./pages/MyPosts2";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -20,8 +21,10 @@ function App() {
   const [searchInput,set_searchInput] = useState("");
   const [userId,set_UserId] = useState("");
   const [profilePicture,set_ProfilePicture] = useState("");
+  const [numPosts,set_NumPosts] = useState(0);
   return (
-    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,userId,set_UserId,profilePicture,set_ProfilePicture}}>
+    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,
+    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
@@ -49,6 +52,9 @@ function App() {
         </Route>
         <Route path="/template">
           <Template></Template>
+        </Route>
+        <Route path="/myposts">
+          <MyPosts2></MyPosts2>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

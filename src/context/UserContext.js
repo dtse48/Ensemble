@@ -12,5 +12,7 @@ export const UserContext = createContext({
     userId:"",
     set_UserId:((userId)=>{}),
     profilePicture:"",
-    set_ProfilePicture:((profilePicture)=>{})
+    set_ProfilePicture:((profilePicture)=>{}),
+    numPosts:0,
+    set_NumPosts:((numPosts)=>{})
 });

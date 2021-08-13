@@ -7,6 +7,7 @@ import {UserContext} from "../context/UserContext";
 function CreateAccount() {
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
+    const [picture,setPicture] = useState("");
     const [submitted,setSubmitted] = useState(false);
     const [loadedUsers,setUsers] = useState([]);
     const history = useHistory();
@@ -44,7 +45,9 @@ function CreateAccount() {
             if (validUsername) {
                 let userData = {
                     username: username,
-                    password: password
+                    password: password,
+                    picture: picture,
+                    numPosts: 0
                 }
                 fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json",
                 {
@@ -75,6 +78,8 @@ function CreateAccount() {
                     {submitted && password === "" ?
                     <div style={{color:"red"}}>Password is required!</div> 
                     : null}
+                    <Form.Label>Profile Picture (image link):</Form.Label>
+                    <Form.Control type = "text" onBlur={(response)=>{setPicture(response.target.value);}}></Form.Control>
                 </Form.Group>
                 <div style = {{textAlign:"center"}}>
                     <Button style = {{marginTop:"20px",marginLeft:"auto",marginRight:"auto",backgroundColor: "#ff7456",borderColor:"#ff7456"}} onClick = {registrationHandler}>Register</Button>

@@ -11,6 +11,7 @@ function CreatePage() {
     let songName = "";
     let albumName = "";
     let artistName = "";
+    let num_Posts;
     const history = useHistory();
     const context = useContext(UserContext);
     const [postType, setPostType] = useState("Song");
@@ -62,15 +63,31 @@ function CreatePage() {
             postData.albumName = albumName;
         }
         postData.artistName = artistName;
-
         fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts.json",
         {
             method:"POST",
             body:JSON.stringify(postData),
             headers: {"Content-Type": "application/json"}
         }).then(() => {
-            history.push("/successfulpost");
-        })
+            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json")
+            .then(response => {
+                return response.json();
+            }).then(data => {
+                num_Posts=data.numPosts;
+            }).then(() => {
+                    fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json",
+                {
+                    method:"PATCH",
+                    body:JSON.stringify({
+                        numPosts:num_Posts+1
+                    }),
+                    headers: {"Content-Type": "application/json"}
+                }).then(() => {
+                    // history.push("/");
+                    history.push("/successfulpost")
+                });
+            });
+        });
     }
     return (
         <div>
