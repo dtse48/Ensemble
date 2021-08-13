@@ -9,14 +9,26 @@ import Template from "./Template";
 function Profile() {
     const context = useContext(UserContext);
     const history = useHistory();
+    const {set_NumPosts} = useContext(UserContext);
     function redirect() {
         history.push("/settings")
     }
     function showProfile() {
         history.push("/myposts");
     }
+    function loadData() {
+        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json")
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            set_NumPosts(data.numPosts);
+            console.log(context.numPosts)
+        })
+    }
     return (
+        
         <div>
+            {loadData()}
             {context.loggedIn ?
             <div>
                 <Button icon ><Icon name="settings" size="large" onClick={redirect}></Icon></Button>
