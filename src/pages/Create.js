@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import classes from "./Create.module.css";
 import Card from "react-bootstrap/Card";
-import {useState,useContext} from "react";
+import {useState,useContext,useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -11,7 +11,7 @@ function CreatePage() {
     let songName = "";
     let albumName = "";
     let artistName = "";
-    let num_Posts;
+    let x = [];
     const history = useHistory();
     const context = useContext(UserContext);
     const [postType, setPostType] = useState("Song");
@@ -19,13 +19,17 @@ function CreatePage() {
     const [name2, setName2] = useState("");
     const [desc, setDesc] = useState("");
     const [image, setImage] = useState("");
+    const [numPosts, setNumPosts] = useState(0);
+    const [loadedRooms, setLoadedRooms] = useState([]);
     const [submitted, setSubmitted] = useState(false);
     const [showForm, setShowForm] = useState(true);
+    const [roomPosts, setRoomPosts] = useState([]);
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = mm + '/' + dd + '/' + yyyy;
+    let tag = new Date().toLocaleString();
     function submitHandler(event) {
         event.preventDefault();
         setSubmitted(true);
@@ -33,10 +37,29 @@ function CreatePage() {
             setShowForm(false);
         }
     }
+    useEffect(() => {
+        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json")
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            setNumPosts(data.numPosts);
+        });
+    },[]);
+    useEffect(() => {
+        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/rooms.json")
+        .then(response => {
+            return response.json();
+        }).then(data => {
+            setLoadedRooms(data);
+        });
+    },[]);
     function confirmPost() {
+        const roomData = {};
+        let foundRoom = false;
         if (postType === "Artist") {
             subject = context.username + " on " + name1;
             artistName = name1;
+            roomData.roomName = artistName;
         }
         else {
             if (postType === "Song") {
@@ -47,14 +70,18 @@ function CreatePage() {
             }
             artistName = name2;
             subject = context.username + " on " + name1 + " by " + name2;
+            roomData.roomName = name1 + " by " + name2;
         }
+        roomData.posts = [subject + " " + tag];
+        console.log(roomData.posts);
         const postData = {
             postType: postType,
             subject: subject,
             desc: desc,
             image: image,
             username:context.username,
-            date:today
+            date:today,
+            id: subject+" "+tag
         }
         if (songName !== "") {
             postData.songName = songName;
@@ -69,28 +96,63 @@ function CreatePage() {
             body:JSON.stringify(postData),
             headers: {"Content-Type": "application/json"}
         }).then(() => {
-            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json")
-            .then(response => {
-                return response.json();
-            }).then(data => {
-                num_Posts=data.numPosts;
+            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json",
+            {
+                method:"PATCH",
+                body:JSON.stringify({
+                    numPosts:numPosts+1
+                }),
+                headers: {"Content-Type": "application/json"}
             }).then(() => {
-                    fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users/" + context.userId + ".json",
-                {
-                    method:"PATCH",
-                    body:JSON.stringify({
-                        numPosts:num_Posts+1
-                    }),
-                    headers: {"Content-Type": "application/json"}
-                }).then(() => {
-                    // history.push("/");
-                    history.push("/successfulpost")
-                });
+                // history.push("/");
+                history.push("/successfulpost")
             });
         });
+        if (loadedRooms !== []) {
+            for (const key in loadedRooms) {
+                if (loadedRooms[key].roomName === roomData.roomName) {
+                    foundRoom = true;
+                    fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/rooms/" + key + ".json")
+                    .then(response => {
+                        return response.json();
+                    }).then(data => {
+                        console.log("data: " + data);
+                        x = data.posts.concat(subject + " " + tag)
+                        console.log(x);
+                        console.log("updated data.posts: " + x);
+                    }).then(() => {
+                        fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/rooms/" + key + ".json",
+                        {
+                            method:"PATCH",
+                            body:JSON.stringify({
+                                posts:x
+                            }),
+                            headers: {"Content-Type": "application/json"}
+                        })
+                    })   
+                }
+            }
+            if (foundRoom === false) {
+                fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/rooms.json",
+                {
+                    method:"POST",
+                    body:JSON.stringify(roomData),
+                    headers: {"Content-Type": "application/json"}
+                })
+            }
+        }
+        else {
+            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/rooms.json",
+                {
+                    method:"POST",
+                    body:JSON.stringify(roomData),
+                    headers: {"Content-Type": "application/json"}
+                })
+        }
     }
     return (
         <div>
+            {console.log(loadedRooms)}
             {context.loggedIn ? 
                 <div style={{marginTop:"10px"}}>
                     {showForm === true ?
