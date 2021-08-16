@@ -79,7 +79,7 @@ function CreatePage() {
         console.log(roomData.posts);
         const postData = {
             postType: postType,
-            subject: subject,
+            subject: "@"+subject,
             desc: desc,
             image: image,
             username:context.username,

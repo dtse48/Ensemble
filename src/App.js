@@ -13,6 +13,7 @@ import Settings from "./pages/Settings";
 import SuccessfulPost from "./pages/SuccessfulPost";
 import Template from "./pages/Template";
 import MyPosts2 from "./pages/MyPosts2";
+import RoomPosts from "./pages/RoomPosts";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route path="/myposts">
           <MyPosts2></MyPosts2>
+        </Route>
+        <Route path="/roomposts">
+          <RoomPosts></RoomPosts>
         </Route>
       </NavigationBar>
     </UserContext.Provider>
