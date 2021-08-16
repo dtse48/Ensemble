@@ -1,38 +1,39 @@
 import {useContext,useEffect,useState} from "react";
 import {UserContext} from "../context/UserContext";
-import MyPosts from "./MyPosts";
+import Rooms from "./Rooms.js";
 
 function SearchResults() {
     const context = useContext(UserContext);
-    const [loadedPosts,setLoadedPosts] = useState([]);
+    const [loadedRooms,setLoadedRooms] = useState([]);
     useEffect(() => 
         {
-            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/posts.json"
+            fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/rooms.json"
             ).then(response => {
                 return response.json();
             }).then(data => {
-                const posts = [];
+                const rooms = [];
                 for (const key in data) {
-                    const post = {
+                    const room = {
                         id: key,
                         ...data[key]
                     }
-                    if (context.searchInput === post.songName || context.searchInput === post.artistName || context.searchInput === post.albumName) {
-                        posts.push(post);
+                    room.numPosts = room.posts.length;
+                    if (context.searchInput === room.songName || context.searchInput === room.artistName || context.searchInput === room.albumName || context.searchInput === room.roomName) {
+                        rooms.push(room);
                     } 
                 }
-                setLoadedPosts(posts.reverse());
+                setLoadedRooms(rooms.reverse());
             });
         },[context.searchInput])
     return (
         <div style={{marginTop:"50px"}}>
             {/* <h6>Search Results:</h6> */}
             <div>
-                {loadedPosts.length === 0 ?
+                {loadedRooms.length === 0 ?
                     <div style={{textAlign:"center"}}>Your search returned 0 results!</div>
                 :
                 <div>
-                    <MyPosts posts={loadedPosts}></MyPosts>
+                    <Rooms rooms={loadedRooms}></Rooms>
                 </div>    
                 }
             </div> 

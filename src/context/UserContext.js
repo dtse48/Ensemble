@@ -14,5 +14,7 @@ export const UserContext = createContext({
     profilePicture:"",
     set_ProfilePicture:((profilePicture)=>{}),
     numPosts:0,
-    set_NumPosts:((numPosts)=>{})
+    set_NumPosts:((numPosts)=>{}),
+    currentRoom:"",
+    set_currentRoom:((currentRoom)=>{})
 });

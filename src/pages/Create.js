@@ -59,19 +59,22 @@ function CreatePage() {
         if (postType === "Artist") {
             subject = context.username + " on " + name1;
             artistName = name1;
-            roomData.roomName = artistName;
+            roomData.roomName = artistName;    
         }
         else {
             if (postType === "Song") {
                 songName = name1;
+                roomData.songName = name1;
             }
             if (postType === "Album") {
                 albumName = name1;
+                roomData.albumName = name1;
             }
             artistName = name2;
             subject = context.username + " on " + name1 + " by " + name2;
             roomData.roomName = name1 + " by " + name2;
         }
+        roomData.artistName= artistName;
         roomData.posts = [subject + " " + tag];
         console.log(roomData.posts);
         const postData = {

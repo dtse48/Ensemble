@@ -22,9 +22,10 @@ function App() {
   const [userId,set_UserId] = useState("");
   const [profilePicture,set_ProfilePicture] = useState("");
   const [numPosts,set_NumPosts] = useState(0);
+  const [currentRoom,set_currentRoom] = useState("");
   return (
     <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,
-    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts}}>
+    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
