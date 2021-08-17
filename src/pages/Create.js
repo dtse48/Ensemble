@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import classes from "./Create.module.css";
 import Card from "react-bootstrap/Card";
 import {useState,useContext,useEffect} from "react";
-import {useHistory} from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 function CreatePage() {
@@ -157,7 +157,7 @@ function CreatePage() {
         <div>
             {console.log(loadedRooms)}
             {context.loggedIn ? 
-                <div style={{marginTop:"10px"}}>
+                <div style={{marginTop:"50px"}}>
                     {showForm === true ?
                     <Form className = {classes.form} onSubmit = {submitHandler} style={{width:"25%",margin:"auto"}}>
                         <Form.Group>
@@ -212,7 +212,7 @@ function CreatePage() {
                         </Card>
                         <h5 className = {classes.simpleText}>Would you like to post this?</h5>
                         <div style = {{textAlign: "center"}}>
-                            <Button style = {{backgroundColor: "#ff7456",marginRight:"15px",borderColor:"#ff7456"}} onClick = {confirmPost}>Yes</Button><Button style = {{backgroundColor:"white",color:"red",borderColor:"red"}}>No</Button>
+                            <Button style = {{backgroundColor: "#ff7456",marginRight:"15px",borderColor:"#ff7456"}} onClick = {confirmPost}>Yes</Button><Button as={Link} to="/" style = {{backgroundColor:"white",color:"red",borderColor:"red"}}>No</Button>
                         </div>               
                     </div> 
                     } 

@@ -2,18 +2,26 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { Card,Image,Icon } from "semantic-ui-react";
 import classes from "./WelcomeCardHeaders.module.css";
+import { useHistory } from "react-router-dom";
 
 function WelcomePage() {
     const context = useContext(UserContext);
-    console.log(context.username);
-    console.log(context.password);
-    console.log(context.loggedIn);
+    const history = useHistory();
+    function goRecentRooms() {
+        history.push("/recentrooms");
+    }
+    function goCreate() {
+        history.push("/create");
+    }
+    function goRecentRooms() {
+        history.push("/recentrooms");
+    }
     return (
         <div style={{marginTop:"50px",textAlign:"center"}}>
             <Card.Group centered>
                 <Card style={{width:"15%",height:"400px",backgroundColor:"#18db9d"}} className={classes.cards}>
-                    <Image style={{width:"auto",height:"300px"}} src="https://images-na.ssl-images-amazon.com/images/I/71DQrKpImPL._SL1400_.jpg"></Image>
-                    <Card.Content>
+                    <Image onClick={goCreate} style={{width:"auto",height:"300px"}} src="https://images-na.ssl-images-amazon.com/images/I/71DQrKpImPL._SL1400_.jpg"></Image>
+                    <Card.Content onClick={goCreate}>
                         <Card.Header style={{color:"white"}}>Discuss your favorite music</Card.Header>
                         <Icon name="comments outline" size="big" color="black" style={{marginTop:"10px"}}></Icon>
                     </Card.Content>
@@ -26,8 +34,8 @@ function WelcomePage() {
                     </Card.Content>
                 </Card>
                 <Card style={{width:"15%",height:"400px",backgroundColor:"#0077ff"}} className={classes.cards}>
-                    <Image  style={{width:"auto",height:"300px"}} src="https://static.billboard.com/files/2021/07/Olivia-Rodrigo-2021-Press-cr-Courtesy-of-Geffen_Interscope-Records-1-bb10-2021-billboard-1548-1626206323-compressed.jpg"></Image>
-                    <Card.Content>
+                    <Image onClick={goRecentRooms} style={{width:"auto",height:"300px"}} src="https://static.billboard.com/files/2021/07/Olivia-Rodrigo-2021-Press-cr-Courtesy-of-Geffen_Interscope-Records-1-bb10-2021-billboard-1548-1626206323-compressed.jpg"></Image>
+                    <Card.Content onClick={goRecentRooms}>
                         <Card.Header style={{color:"white"}}>See what others are saying</Card.Header>
                         <Icon name="search" size="big" color="black" style={{marginTop:"10px"}}></Icon>
                     </Card.Content>

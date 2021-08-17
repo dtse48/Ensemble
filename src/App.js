@@ -15,6 +15,7 @@ import Template from "./pages/Template";
 import MyPosts2 from "./pages/MyPosts2";
 import RoomPosts from "./pages/RoomPosts";
 import ShowProfile from "./pages/ShowProfile";
+import RecentRooms from "./pages/RecentRooms";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -65,6 +66,9 @@ function App() {
         </Route>
         <Route path="/showprofile">
           <ShowProfile></ShowProfile>
+        </Route>
+        <Route path="/recentrooms">
+          <RecentRooms></RecentRooms>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

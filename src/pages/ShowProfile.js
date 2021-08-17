@@ -1,13 +1,18 @@
 import { Card,Image } from "react-bootstrap";
-import { Menu } from "semantic-ui-react";
+import { Menu,Icon } from "semantic-ui-react";
 import { useEffect,useContext,useState } from "react";
 import { UserContext } from "../context/UserContext";
+import classes from "./ShowProfile.module.css";
 
 function ShowProfile() {
     const context = useContext(UserContext);
     const [username,setUsername] = useState("");
     const [profilePicture,setProfilePicture] = useState("");
     const [numPosts,setNumPosts] = useState(0);
+    const [showFollowing,setShowFollowing] = useState(false);
+    function toggleFollowing() {
+        setShowFollowing(!showFollowing);
+    }
     useEffect(() => {
         fetch("https://ensemble-75caf-default-rtdb.firebaseio.com/users.json")
         .then((response) =>{
@@ -41,6 +46,19 @@ function ShowProfile() {
                     </Menu.Item>
                 </Menu>
             </Card.Body>
+            <Card.Footer style={{textAlign:"right",backgroundColor:"#fff9eb"}}> 
+                {!showFollowing ?
+                <div>
+                    <Icon name="user outline" size="large"></Icon>
+                    <Icon name="plus" size="small" className={classes.icon} onClick={toggleFollowing}></Icon>
+                </div>
+                :
+                <div>
+                    <Icon name="user" size="large" className={classes.icon} onClick={toggleFollowing}></Icon>
+                    <Icon name="minus" size="small" className={classes.icon} onClick={toggleFollowing}></Icon>
+                </div>
+                }
+            </Card.Footer>
         </Card>
     );
 }
