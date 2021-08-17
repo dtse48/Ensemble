@@ -14,6 +14,7 @@ import SuccessfulPost from "./pages/SuccessfulPost";
 import Template from "./pages/Template";
 import MyPosts2 from "./pages/MyPosts2";
 import RoomPosts from "./pages/RoomPosts";
+import ShowProfile from "./pages/ShowProfile";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,9 +25,10 @@ function App() {
   const [profilePicture,set_ProfilePicture] = useState("");
   const [numPosts,set_NumPosts] = useState(0);
   const [currentRoom,set_currentRoom] = useState("");
+  const [currentProfile,set_currentProfile] = useState("");
   return (
     <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,
-    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom}}>
+    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
@@ -60,6 +62,9 @@ function App() {
         </Route>
         <Route path="/roomposts">
           <RoomPosts></RoomPosts>
+        </Route>
+        <Route path="/showprofile">
+          <ShowProfile></ShowProfile>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

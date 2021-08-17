@@ -11,6 +11,9 @@ function MyPosts(props) {
                     image={post.image}
                     username={post.username}
                     date={post.date}
+                    songName={post.songName}
+                    artistName={post.artistName}
+                    albumName={post.albumName}
                 />)}
         </ul>
     )
