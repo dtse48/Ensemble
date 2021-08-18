@@ -46,19 +46,25 @@ function ShowProfile() {
                     </Menu.Item>
                 </Menu>
             </Card.Body>
+            {context.username !== username ?
             <Card.Footer style={{textAlign:"right",backgroundColor:"#fff9eb"}}> 
-                {!showFollowing ?
                 <div>
-                    <Icon name="user outline" size="large"></Icon>
-                    <Icon name="plus" size="small" className={classes.icon} onClick={toggleFollowing}></Icon>
-                </div>
-                :
-                <div>
-                    <Icon name="user" size="large" className={classes.icon} onClick={toggleFollowing}></Icon>
-                    <Icon name="minus" size="small" className={classes.icon} onClick={toggleFollowing}></Icon>
-                </div>
-                }
+                    {!showFollowing ?
+                    <div>
+                        <Icon name="user outline" size="large"></Icon>
+                        <Icon name="plus" size="small" className={classes.icon} onClick={toggleFollowing}></Icon>
+                    </div>
+                    :
+                    <div>
+                        <Icon name="user" size="large" className={classes.icon} onClick={toggleFollowing}></Icon>
+                        <Icon name="minus" size="small" className={classes.icon} onClick={toggleFollowing}></Icon>
+                    </div>
+                    }
+                </div> 
             </Card.Footer>
+            :
+            null
+            }
         </Card>
     );
 }

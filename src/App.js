@@ -7,7 +7,7 @@ import CreateAccount from "./pages/CreateAccount";
 import Profile from "./pages/Profile";
 import "bootstrap/dist/css/bootstrap.css";
 import {UserContext} from "./context/UserContext";
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import SearchResults from "./pages/SearchResults";
 import Settings from "./pages/Settings";
 import SuccessfulPost from "./pages/SuccessfulPost";
@@ -16,19 +16,23 @@ import MyPosts2 from "./pages/MyPosts2";
 import RoomPosts from "./pages/RoomPosts";
 import ShowProfile from "./pages/ShowProfile";
 import RecentRooms from "./pages/RecentRooms";
+import Dropdown from "./components/Dropdown";
+import Test2 from "./pages/Test2";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, set_Username] = useState("");
   const [password, set_Password] = useState("");
   const [searchInput,set_searchInput] = useState("");
+  const [searchInputType,set_searchInputType] = useState("");
   const [userId,set_UserId] = useState("");
   const [profilePicture,set_ProfilePicture] = useState("");
   const [numPosts,set_NumPosts] = useState(0);
   const [currentRoom,set_currentRoom] = useState("");
   const [currentProfile,set_currentProfile] = useState("");
+
   return (
-    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,
+    <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,searchInputType,set_searchInputType,
     userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile}}>
       <NavigationBar>
         <Route path = "/" exact>
@@ -69,6 +73,12 @@ function App() {
         </Route>
         <Route path="/recentrooms">
           <RecentRooms></RecentRooms>
+        </Route>
+        <Route path="/test">
+          <Dropdown></Dropdown>
+        </Route>
+        <Route path="/test2">
+          <Test2></Test2>
         </Route>
       </NavigationBar>
     </UserContext.Provider>
