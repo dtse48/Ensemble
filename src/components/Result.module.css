@@ -1,0 +1,8 @@
+.menu {
+    margin-top:50px;
+    cursor:pointer;
+}
+
+.menu-hover{
+    background-color: blue;
+}

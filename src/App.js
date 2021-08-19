@@ -17,6 +17,7 @@ import RoomPosts from "./pages/RoomPosts";
 import ShowProfile from "./pages/ShowProfile";
 import RecentRooms from "./pages/RecentRooms";
 import CreatePrelim from "./pages/CreatePrelim";
+import DesignPost from "./pages/DesignPost";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,10 +30,11 @@ function App() {
   const [numPosts,set_NumPosts] = useState(0);
   const [currentRoom,set_currentRoom] = useState("");
   const [currentProfile,set_currentProfile] = useState("");
+  const [postSubject,set_postSubject] = useState("");
 
   return (
     <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,searchInputType,set_searchInputType,
-    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile}}>
+    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile,postSubject,set_postSubject}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
@@ -40,9 +42,6 @@ function App() {
         <Route path = "/login">
           <LoginPage></LoginPage>
         </Route>
-        {/* <Route path = "/create">
-          <CreatePage></CreatePage>
-        </Route> */}
         <Route path = "/createaccount">
           <CreateAccount></CreateAccount>
         </Route>
@@ -75,6 +74,9 @@ function App() {
         </Route>
         <Route path="/create">
           <CreatePrelim></CreatePrelim>
+        </Route>
+        <Route path="/designpost">
+          <DesignPost></DesignPost>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

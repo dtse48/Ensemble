@@ -20,5 +20,7 @@ export const UserContext = createContext({
     currentRoom:"",
     set_currentRoom:((currentRoom)=>{}),
     currentProfile:"",
-    set_currentProfile:((currentProfile)=>[])
+    set_currentProfile:((currentProfile)=>[]),
+    postSubject:"",
+    set_postSubject:((postSubject)=>[]),
 });

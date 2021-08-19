@@ -161,35 +161,10 @@ function CreatePage() {
                     {showForm === true ?
                     <Form className = {classes.form} onSubmit = {submitHandler} style={{width:"25%",margin:"auto"}}>
                         <Form.Group>
-                            <Form.Label>Post Type:</Form.Label>
-                            <Form.Control as = "select" onChange = {(type) => {setPostType(type.target.value);}}>
-                                <option value = "Song">Song</option>
-                                <option value = "Album">Album</option>
-                                <option value = "Artist">Artist</option>
-                            </Form.Control>
-                            <Form.Label>{postType} Name:</Form.Label>
-                            <Form.Control type = "text" onBlur = {(response => {setName1(response.target.value);})}></Form.Control>
-                            {name1 === "" && submitted === true ? 
-                                <p className = {classes.error}>{postType} name is required!</p>
-                            : null}
-                            {postType !== "Artist" ? 
-                                <div>
-                                    <Form.Label>Artist Name:</Form.Label>
-                                    <Form.Control type = "text" onBlur = {(response => {setName2(response.target.value);})}></Form.Control>
-                                    {name2 === "" && submitted === true ? 
-                                        <p className = {classes.error}>Artist name is required!</p>
-                                    : null}
-                                </div> 
-                            : null}
-                            <Form.Label>What do you want to say about [ {name1} ] ?</Form.Label>
+                            <Form.Label>What do you want to say about [{context.postSubject}]?</Form.Label>
                             <Form.Control as = "textarea" onBlur = {(response => {setDesc(response.target.value);})}></Form.Control>
                             {desc === "" && submitted === true? 
                                         <p className = {classes.error}>Description is required!</p>
-                            : null}
-                            <Form.Label>Image link:</Form.Label>
-                            <Form.Control type = "text" onBlur = {(response) => {setImage(response.target.value);}}></Form.Control>
-                            {image === "" && submitted === true? 
-                                        <p className = {classes.error}>Image link is required!</p>
                             : null}
                         </Form.Group>
                         <div style={{textAlign:"center"}}><Button style = {{backgroundColor: "#ff7456", marginTop: "20px", borderColor: "#ff7456",textAlign:"center"}} type = "submit">Submit</Button></div>

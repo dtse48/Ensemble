@@ -7,7 +7,9 @@ function ResultList(props) {
             <div>
             {props.searchResult.map(result => 
                 <Result
-                    albumPicture={result.album.images[1].url}
+                    songName={result.name}
+                    artistName={result.artists[0].name}
+                    imageUrl={result.album.images[1].url}
                     searchInputType="track"
                 />
             )}
@@ -17,8 +19,21 @@ function ResultList(props) {
             <div>
             {props.searchResult.map(result => 
                 <Result
-                    albumPicture={result.images[1].url}
+                    albumName={result.name}
+                    artistName={result.artists[0].name}
+                    imageUrl={result.images[1].url}
                     searchInputType="album"
+                />
+            )}
+            </div>
+            :null} 
+            {props.searchInputType === "artist" ?
+            <div>
+            {props.searchResult.map(result => 
+                <Result
+                    artistName={result.name}
+                    imageUrl={result.images}
+                    searchInputType="artist"
                 />
             )}
             </div>
