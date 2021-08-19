@@ -88,6 +88,7 @@ function CreatePrelim() {
             :
             <div>
                 <ResultList searchResult={searchResult} searchInputType={context.searchInputType}></ResultList>
+                {/* {console.log(context.searchInputType)} */}
             </div>
             } 
         </div>

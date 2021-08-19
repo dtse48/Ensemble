@@ -30,11 +30,11 @@ function App() {
   const [numPosts,set_NumPosts] = useState(0);
   const [currentRoom,set_currentRoom] = useState("");
   const [currentProfile,set_currentProfile] = useState("");
-  const [postSubject,set_postSubject] = useState("");
+  const [postInfo,set_postInfo] = useState("");
 
   return (
     <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,searchInputType,set_searchInputType,
-    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile,postSubject,set_postSubject}}>
+    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile,postInfo,set_postInfo}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>

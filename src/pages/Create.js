@@ -14,7 +14,7 @@ function CreatePage() {
     let x = [];
     const history = useHistory();
     const context = useContext(UserContext);
-    const [postType, setPostType] = useState("Song");
+    const [postType, setPostType] = useState("");
     const [name1, setName1] = useState("");
     const [name2, setName2] = useState("");
     const [desc, setDesc] = useState("");
@@ -56,32 +56,33 @@ function CreatePage() {
     function confirmPost() {
         const roomData = {};
         let foundRoom = false;
-        if (postType === "Artist") {
-            subject = context.username + " on " + name1;
-            artistName = name1;
+        if (context.postInfo.postType === "artist") {
+            subject = context.username + " on " + context.postInfo.subject;
+            artistName = context.postInfo.artistName;
             roomData.roomName = artistName;    
         }
         else {
-            if (postType === "Song") {
-                songName = name1;
-                roomData.songName = name1;
+            if (context.postInfo.postType === "track") {
+                songName = context.postInfo.songName;
+                roomData.songName = songName;
             }
-            if (postType === "Album") {
-                albumName = name1;
-                roomData.albumName = name1;
+            if (context.postInfo.postType === "album") {
+                albumName = context.postInfo.albumName;
+                roomData.albumName = albumName;
             }
-            artistName = name2;
-            subject = context.username + " on " + name1 + " by " + name2;
-            roomData.roomName = name1 + " by " + name2;
+            artistName = context.postInfo.artistName;
+            subject = context.username + " on " + context.postInfo.subject;
+            roomData.roomName = context.postInfo.subject;
         }
         roomData.artistName= artistName;
         roomData.posts = [subject + " " + tag];
+        console.log(roomData);
         console.log(roomData.posts);
         const postData = {
-            postType: postType,
+            postType: context.postInfo.postType,
             subject: "@"+subject,
             desc: desc,
-            image: image,
+            image: context.postInfo.imageUrl,
             username:context.username,
             date:today,
             id: subject+" "+tag
@@ -155,30 +156,33 @@ function CreatePage() {
     }
     return (
         <div>
-            {console.log(loadedRooms)}
+            {console.log(context.postInfo)}
             {context.loggedIn ? 
                 <div style={{marginTop:"50px"}}>
                     {showForm === true ?
                     <Form className = {classes.form} onSubmit = {submitHandler} style={{width:"25%",margin:"auto"}}>
                         <Form.Group>
-                            <Form.Label>What do you want to say about [{context.postSubject}]?</Form.Label>
+                            <Form.Label>What do you want to say about [{context.postInfo.subject}]?</Form.Label>
                             <Form.Control as = "textarea" onBlur = {(response => {setDesc(response.target.value);})}></Form.Control>
                             {desc === "" && submitted === true? 
                                         <p className = {classes.error}>Description is required!</p>
                             : null}
                         </Form.Group>
-                        <div style={{textAlign:"center"}}><Button style = {{backgroundColor: "#ff7456", marginTop: "20px", borderColor: "#ff7456",textAlign:"center"}} type = "submit">Submit</Button></div>
+                        <div style={{textAlign:"center"}}><Button style = {{backgroundColor: "#ff7456", marginTop: "20px", borderColor: "#ff7456",textAlign:"center"}} type = "submit" onClick={()=>setShowForm(false)}>Submit</Button></div>
                     </Form>
                     : 
                     <div style={{marginTop:"50px"}}> 
                         <h5 className = {classes.simpleText}>Your post will look like this:</h5>
                         <Card style = {{width: "500px",margin:"auto"}}>
-                            {postType === "Artist" ?
-                            <Card.Header>{context.username} on {name1}</Card.Header> 
-                            : 
-                            <Card.Header>{context.username} on {name1} by {name2}</Card.Header> 
-                            }
-                            <Card.Img src = {image} style = {{width: "50%", marginRight: "auto", display: "block", marginLeft: "auto", marginTop: "40px"}}></Card.Img>
+                            <Card.Header>
+                                {context.postInfo.postType === "track" ?
+                                <div>
+                                    <Link>@{context.username}</Link> on <Link>{context.postInfo.songName}</Link> by <Link>{context.postInfo.artistName}</Link>
+                                </div> 
+                                :
+                                null}
+                            </Card.Header> 
+                            <Card.Img src = {context.postInfo.imageUrl} style = {{width: "50%", marginRight: "auto", display: "block", marginLeft: "auto", marginTop: "40px"}}></Card.Img>
                             <Card.Body>
                                 <hr></hr>
                                 <Card.Text>"{desc}"</Card.Text>

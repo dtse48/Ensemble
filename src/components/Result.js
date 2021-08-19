@@ -6,16 +6,43 @@ import classes from "./Result.module.css";
 
 function Result(props) {
     const history = useHistory();
-    const {set_postSubject} = useContext(UserContext);
+    const {set_postInfo} = useContext(UserContext);
     function redirect() {
         if (props.searchInputType === "track") {
-            set_postSubject(props.songName+" by "+props.artistName);
+            set_postInfo({
+                subject: props.songName+" by "+props.artistName,
+                songName: props.songName,
+                artistName: props.artistName,
+                imageUrl:props.imageUrl,
+                postType: "track"
+            });
         }
         else if (props.searchInputType === "album") {
-            set_postSubject(props.albumName+" by "+props.artistName);
+            set_postInfo({
+                subject:props.albumName+" by "+props.artistName,
+                albumName: props.albumName,
+                artistName: props.artistName,
+                imageUrl:props.imageUrl,
+                postType: "album"
+            });
         }
         else {
-            set_postSubject(props.artistName);
+            if (props.imageUrl.length !== 0) {
+                set_postInfo({
+                    subject:props.artistName,
+                    artistName:props.artistName,
+                    imageUrl:props.imageUrl[1].url,
+                    postType: "artist"
+                });    
+            }
+            else {
+                set_postInfo({
+                    subject:props.artistName,
+                    artistName:props.artistName,
+                    imageUrl:"https://www.psi.org.kh/wp-content/uploads/2019/01/profile-icon-300x300.png",
+                    postType: "artist"
+                }); 
+            }  
         }
         history.push("/designpost");
     }

@@ -29,13 +29,13 @@ function Post(props) {
     return (  
         <Card style = {{width: "500px",margin:"auto",marginTop:"45px"}}>
             <Card.Header>
-                {props.postType === "Song" ?
+                {props.postType === "track" ?
                 <div><Link onClick={setTarget}>{username}</Link> on <Link onClick={clickedSong}>{props.songName}</Link> by <Link onClick={clickedArtist}>{props.artistName}</Link></div>
                 :null}
-                {props.postType === "Album" ?
+                {props.postType === "album" ?
                 <div><Link onClick={setTarget}>{username}</Link> on <Link onClick={clickedAlbum}>{props.albumName}</Link> by <Link onClick={clickedArtist}>{props.artistName}</Link></div>
                 :null}
-                {props.postType === "Artist" ?
+                {props.postType === "artist" ?
                 <div><Link onClick={setTarget}>{username}</Link> on <Link onClick={clickedArtist}>{props.artistName}</Link></div>
                 :null}
             </Card.Header> 
