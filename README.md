@@ -9,6 +9,3 @@ How to run the application:
   - Open a terminal and navigate to the folder that you have pulled this repository into
   - Run "npm start", allow the web app to open in your default browser, and enjoy Ensemble!
   - Feel free to contact me at danielts@bu.edu with any questions!
-
-Notes:
-  - "Create" page is currently under work, please see commit daa2dac for fully functioning "Create" page
