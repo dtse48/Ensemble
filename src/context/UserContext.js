@@ -9,7 +9,7 @@ export const UserContext = createContext({
     set_Password: ((password)=>{}),
     searchInput:"",
     set_searchInput:((searchInput)=>{}),
-    searchInputType:"track",
+    searchInputType:"",
     set_searchInputType:((searchInputType)=>{}),
     userId:"",
     set_UserId:((userId)=>{}),

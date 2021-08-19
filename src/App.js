@@ -16,15 +16,14 @@ import MyPosts2 from "./pages/MyPosts2";
 import RoomPosts from "./pages/RoomPosts";
 import ShowProfile from "./pages/ShowProfile";
 import RecentRooms from "./pages/RecentRooms";
-import Dropdown from "./components/Dropdown";
-import Test2 from "./pages/Test2";
+import CreatePrelim from "./pages/CreatePrelim";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, set_Username] = useState("");
   const [password, set_Password] = useState("");
   const [searchInput,set_searchInput] = useState("");
-  const [searchInputType,set_searchInputType] = useState("");
+  const [searchInputType,set_searchInputType] = useState("track");
   const [userId,set_UserId] = useState("");
   const [profilePicture,set_ProfilePicture] = useState("");
   const [numPosts,set_NumPosts] = useState(0);
@@ -41,9 +40,9 @@ function App() {
         <Route path = "/login">
           <LoginPage></LoginPage>
         </Route>
-        <Route path = "/create">
+        {/* <Route path = "/create">
           <CreatePage></CreatePage>
-        </Route>
+        </Route> */}
         <Route path = "/createaccount">
           <CreateAccount></CreateAccount>
         </Route>
@@ -74,11 +73,8 @@ function App() {
         <Route path="/recentrooms">
           <RecentRooms></RecentRooms>
         </Route>
-        <Route path="/test">
-          <Dropdown></Dropdown>
-        </Route>
-        <Route path="/test2">
-          <Test2></Test2>
+        <Route path="/create">
+          <CreatePrelim></CreatePrelim>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

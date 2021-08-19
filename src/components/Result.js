@@ -1,7 +1,15 @@
 function Result(props) {
     return (
+        
         <div>
-            {props.albumName}
+            {props.searchInputType === "track"?
+            <img src={props.albumPicture}></img>
+            :
+            null}
+            {props.searchInputType === "album"?
+            <img src={props.albumPicture}></img>
+            :
+            null}
         </div>
     );
 }

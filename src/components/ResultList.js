@@ -1,16 +1,29 @@
 import Result from "./Result";
 
-function ResultList() {
+function ResultList(props) {
     return (
-        <div>adaf</div>
-        // <ul>
-        //     {console.log("asdfasdfdas")}
-        //     {props.searchResult.map(result => 
-        //         <Result
-        //             albumName={result.album.name}
-        //         />
-        //     )}
-        // </ul>
+        <ul>
+            {props.searchInputType === "track" ?
+            <div>
+            {props.searchResult.map(result => 
+                <Result
+                    albumPicture={result.album.images[1].url}
+                    searchInputType="track"
+                />
+            )}
+            </div>
+            :null}
+            {props.searchInputType === "album" ?
+            <div>
+            {props.searchResult.map(result => 
+                <Result
+                    albumPicture={result.images[1].url}
+                    searchInputType="album"
+                />
+            )}
+            </div>
+            :null}  
+        </ul>
     )
 }
 
