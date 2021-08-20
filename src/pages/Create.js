@@ -181,6 +181,18 @@ function CreatePage() {
                                 </div> 
                                 :
                                 null}
+                                {context.postInfo.postType === "album" ?
+                                <div>
+                                    <Link>@{context.username}</Link> on <Link>{context.postInfo.albumName}</Link> by <Link>{context.postInfo.artistName}</Link>
+                                </div> 
+                                :
+                                null}
+                                {context.postInfo.postType === "artist" ?
+                                <div>
+                                    <Link>@{context.username}</Link> on <Link>{context.postInfo.artistName}</Link>
+                                </div> 
+                                :
+                                null}
                             </Card.Header> 
                             <Card.Img src = {context.postInfo.imageUrl} style = {{width: "50%", marginRight: "auto", display: "block", marginLeft: "auto", marginTop: "40px"}}></Card.Img>
                             <Card.Body>

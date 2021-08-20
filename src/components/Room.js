@@ -37,13 +37,16 @@ function Room(props) {
         })
     }
     return (
-        <Menu className={classes.room} widths={1}>
-            {props.numPosts === 1 ?
-            <Menu.Item link onClick={redirect}>{props.numPosts} post about {props.roomName}</Menu.Item>
-            :
-            <Menu.Item link onClick={redirect}>{props.numPosts} posts about {props.roomName}</Menu.Item>
-            }
-        </Menu>
+        <div style={{width:"50%",margin:"auto"}}>
+        <Menu style={{marginTop:"25px"}} className={classes.room} widths={1}>
+                {props.numPosts === 1 ?
+                <Menu.Item link onClick={redirect}>{props.numPosts} post about {props.roomName}</Menu.Item>
+                :
+                <Menu.Item link onClick={redirect}>{props.numPosts} posts about {props.roomName}</Menu.Item>
+                }
+            </Menu>
+        </div>
+        
     )
 }
 

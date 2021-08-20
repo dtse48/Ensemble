@@ -18,6 +18,8 @@ import ShowProfile from "./pages/ShowProfile";
 import RecentRooms from "./pages/RecentRooms";
 import CreatePrelim from "./pages/CreatePrelim";
 import DesignPost from "./pages/DesignPost";
+import ChooseCategory from "./pages/ChooseCategory";
+import LinkResults from "./pages/LinkResults";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -31,10 +33,12 @@ function App() {
   const [currentRoom,set_currentRoom] = useState("");
   const [currentProfile,set_currentProfile] = useState("");
   const [postInfo,set_postInfo] = useState("");
+  const [searchResults,set_searchResults] = useState("");
 
   return (
     <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,searchInputType,set_searchInputType,
-    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile,postInfo,set_postInfo}}>
+    userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile,postInfo,set_postInfo,
+    searchResults,set_searchResults}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>
@@ -77,6 +81,12 @@ function App() {
         </Route>
         <Route path="/designpost">
           <DesignPost></DesignPost>
+        </Route>
+        <Route path="/choosecategory">
+          <ChooseCategory></ChooseCategory>
+        </Route>
+        <Route path="/linkresults">
+          <LinkResults></LinkResults>
         </Route>
       </NavigationBar>
     </UserContext.Provider>

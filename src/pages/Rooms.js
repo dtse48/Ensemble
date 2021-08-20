@@ -6,7 +6,7 @@ function Rooms(props) {
             {props.rooms.map(room =>
                 <Room
                     roomName={room.roomName}
-                    numPosts={room.numPosts}
+                    numPosts={room.posts.length}
                     posts={room.posts}
                 />)}
         </ul>

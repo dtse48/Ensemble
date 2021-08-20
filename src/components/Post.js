@@ -16,15 +16,15 @@ function Post(props) {
     }
     function clickedSong() {
         set_searchInput(props.songName);
-        history.push("/searchresults");
+        history.push("/linkresults");
     }
     function clickedAlbum() {
         set_searchInput(props.albumName);
-        history.push("/searchresults");
+        history.push("/linkresults");
     }
     function clickedArtist() {
         set_searchInput(props.artistName);
-        history.push("/searchresults");
+        history.push("/linkresults");
     }
     return (  
         <Card style = {{width: "500px",margin:"auto",marginTop:"45px"}}>
