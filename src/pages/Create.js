@@ -24,6 +24,7 @@ function CreatePage() {
     const [submitted, setSubmitted] = useState(false);
     const [showForm, setShowForm] = useState(true);
     const [roomPosts, setRoomPosts] = useState([]);
+    const {set_numTotalPosts} = useContext(UserContext);
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -109,6 +110,7 @@ function CreatePage() {
                 headers: {"Content-Type": "application/json"}
             }).then(() => {
                 // history.push("/");
+                set_numTotalPosts(context.numTotalPosts+1);
                 history.push("/successfulpost")
             });
         });

@@ -34,11 +34,11 @@ function App() {
   const [currentProfile,set_currentProfile] = useState("");
   const [postInfo,set_postInfo] = useState("");
   const [searchResults,set_searchResults] = useState("");
-
+  const [numTotalPosts,set_numTotalPosts] = useState(0);
   return (
     <UserContext.Provider value={{loggedIn,setLoggedIn,username,set_Username,password,set_Password,searchInput,set_searchInput,searchInputType,set_searchInputType,
     userId,set_UserId,profilePicture,set_ProfilePicture,numPosts,set_NumPosts,currentRoom,set_currentRoom,currentProfile,set_currentProfile,postInfo,set_postInfo,
-    searchResults,set_searchResults}}>
+    searchResults,set_searchResults,numTotalPosts,set_numTotalPosts}}>
       <NavigationBar>
         <Route path = "/" exact>
           <WelcomePage></WelcomePage>

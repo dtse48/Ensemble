@@ -36,7 +36,7 @@ function NavigationBar(props) {
             setLoadedRooms(rooms);
             console.log(loadedRooms);
         })
-    },[])
+    },[context.numTotalPosts])
     function logOut() {
         setLoggedIn(false);
         set_Username("");

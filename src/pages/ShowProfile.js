@@ -3,6 +3,7 @@ import { Menu,Icon } from "semantic-ui-react";
 import { useEffect,useContext,useState } from "react";
 import { UserContext } from "../context/UserContext";
 import classes from "./ShowProfile.module.css";
+import { Link } from "react-router-dom";
 
 function ShowProfile() {
     const context = useContext(UserContext);
@@ -31,7 +32,9 @@ function ShowProfile() {
     },[context.currentProfile])
     return (
         <Card style={{width:"50%",margin:"auto",marginTop:"50px"}}>
-            <Card.Header style={{textAlign:"center",backgroundColor:"#fff9eb"}}>@{username}</Card.Header>
+            <Card.Header style={{textAlign:"center",backgroundColor:"#fff9eb"}}>
+                <Link>@{username}</Link>
+            </Card.Header>
             <Card.Body>
                 <Image src={profilePicture} roundedCircle style={{width:"15%",marginLeft:"175px"}}></Image>
                 <Menu style={{width:"50%",float:"right"}} widths={3}>
@@ -48,6 +51,7 @@ function ShowProfile() {
             </Card.Body>
             {context.username !== username ?
             <Card.Footer style={{textAlign:"right",backgroundColor:"#fff9eb"}}> 
+                {context.loggedIn ? 
                 <div>
                     {!showFollowing ?
                     <div>
@@ -61,6 +65,9 @@ function ShowProfile() {
                     </div>
                     }
                 </div> 
+                :
+                <Link to="/login">Log in to follow this user</Link>
+                }    
             </Card.Footer>
             :
             null

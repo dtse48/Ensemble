@@ -19,7 +19,7 @@ function RecentRooms() {
                 }
                 Rooms.push(room);
             }
-            setRooms(Rooms.slice(0,3));
+            setRooms(Rooms.reverse().slice(0,3));
         })
     },[])
     return (

@@ -24,5 +24,7 @@ export const UserContext = createContext({
     postInfo:{},
     set_postInfo:((postInfo)=>[]),
     searchResults:"",
-    set_setSearchResults:((searchResults)=>[])
+    set_setSearchResults:((searchResults)=>[]),
+    numTotalPosts:"",
+    set_numTotalPosts:((numTotalPosts)=>{})
 });
